@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aiqem Report</title>
+  <style>
+    /* Your existing styles go here */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        /* For WebKit-based browsers like Chrome and Safari */
+        color-adjust: exact;
+        /* For Firefox */
+      }
+    }
+
+    body {
+      box-sizing: border-box;
+      margin: 0 !important;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    #header {
+      background-color: #183e61;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #logo {
+      margin-left: 10%;
+    }
+
+    #report-info {
+      margin-left: 20px;
+      margin-top: 20px;
+      color: #183e61;
+      background-color: rgb(252, 251, 249);
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    #report-container {
+      margin: 20px;
+    }
+
+    #table-container {
+      margin-top: 30px;
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    th,
+    td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 12px;
+    }
+
+    th {
+      background-color: #FF5003;
+      color: white;
+    }
+
+    .table-row {
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .table-row:hover {
+      background-color: #f0f8ff;
+    }
+
+    #download-btn {
+      margin-top: 20px;
+    }
+
+    #download {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    #download:hover {
+      background-color: #45a049;
+    }
+
+    #total-row {
+      background-color: #f2f2f2;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: modalshow 0.3s;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+
+    @keyframes modalshow {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+</head>
+
+<body>
+  <div id="header">
+    <div id="logo">
+      <img
+        src='https://firebasestorage.googleapis.com/v0/b/aiqem-ad-store.appspot.com/o/files%2FAiqemTech.png?alt=media&token=b817d5ac-6237-49c4-8ce4-93f42f5b6ebf'
+        alt='aiqem logo' />
+    </div>
+  </div>
+  <div id="report-info" style="text-align:start; margin-right:50px ; margin-top:50px;">
+    <p style="margin: 5px; "><strong>Company:-</strong> AiQEM </p>
+    <p style="margin: 5px; "><strong>Campaign Name:-</strong> For Demo </p>
+    <p style="margin: 5px ;"><strong>Start Date:-</strong> Wednesday, August 16, 2023 </p>
+    <p style="margin: 5px ;"><strong>End Date:-</strong> Sunday, November 12, 2023 </p>
+    <p style="margin: 5px ;"><strong>Duration:-</strong> 88 Days </p>
+
+  </div>
+
+  <!-- Report Container -->
+  <div id="report-container">
+    
+<hr>
+    <div id="report-info" style="">
+      <p><strong>Channel:</strong> AiQEM DEMO Channel </p>
+      <p><strong>Type:</strong> Standard </p>
+      <p><strong>Payment:</strong> CPM(Cost per mile): 16 Birr <br> </p>
+    </div>
+    <!-- Table Section -->
+    <div id="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Creative</th>
+            <th>Posted At</th>
+            <th>View</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add your table rows here -->
+          <!--
+          <tr class="table-row">
+            <td>1</td>
+            <td>AiQEM Ad NEW</td>
+            <td>Dec 14- 2023</td>
+            <td>1000</td>
+            <td>21.296 Birr</td>
+          </tr>
+          -->
+
+          <tr class="table-row">
+<td> 1 </td><td> For Demo </td><td> 8/11/2023 4:13:00 PM-GMT+3 </td><td> 2 </td><td> 0.03 </td>
+</tr>
+<tr class="table-row">
+<td> 2 </td><td> For Demo </td><td> 8/26/2023 1:44:50 PM-GMT+3 </td><td> 1 </td><td> 0.02 </td>
+</tr>
+
+          <!-- Add more rows as needed -->
+        </tbody>
+        <tfoot>
+          <!-- Total Row -->
+          <tr id="total-row">
+            <td colspan="4" style="text-align: right;">Total:</td>
+            <td> 0.05 Birr </td> <!-- You can replace this with the actual total amount -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+<br><br>
+<hr>
+    <div id="report-info" style="">
+      <p><strong>Channel:</strong> RIX UPDATES </p>
+      <p><strong>Type:</strong> Premium </p>
+      <p><strong>Payment:</strong> CPM(Cost per mile): 25 Birr <br> </p>
+    </div>
+    <!-- Table Section -->
+    <div id="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Creative</th>
+            <th>Posted At</th>
+            <th>View</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add your table rows here -->
+          <!--
+          <tr class="table-row">
+            <td>1</td>
+            <td>AiQEM Ad NEW</td>
+            <td>Dec 14- 2023</td>
+            <td>1000</td>
+            <td>21.296 Birr</td>
+          </tr>
+          -->
+
+          <tr class="table-row">
+<td> 1 </td><td> For Demo </td><td> 8/11/2023 4:13:00 PM-GMT+3 </td><td> 21 </td><td> 0.53 </td>
+</tr>
+<tr class="table-row">
+<td> 2 </td><td> For Demo </td><td> 11/11/2023 4:09:42 PM-GMT+3 </td><td> 2 </td><td> 0.05 </td>
+</tr>
+
+          <!-- Add more rows as needed -->
+        </tbody>
+        <tfoot>
+          <!-- Total Row -->
+          <tr id="total-row">
+            <td colspan="4" style="text-align: right;">Total:</td>
+            <td> 0.58 Birr </td> <!-- You can replace this with the actual total amount -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+<br><br>
+<hr>
+    <div id="report-info" style="">
+      <p><strong>Channel:</strong> New Demo AiQEM CHANNEL </p>
+      <p><strong>Type:</strong> Premium </p>
+      <p><strong>Payment:</strong> CPM(Cost per mile): 25 Birr <br> </p>
+    </div>
+    <!-- Table Section -->
+    <div id="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Creative</th>
+            <th>Posted At</th>
+            <th>View</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add your table rows here -->
+          <!--
+          <tr class="table-row">
+            <td>1</td>
+            <td>AiQEM Ad NEW</td>
+            <td>Dec 14- 2023</td>
+            <td>1000</td>
+            <td>21.296 Birr</td>
+          </tr>
+          -->
+
+          <tr class="table-row">
+<td> 1 </td><td> Sekela Ad </td><td> 8/26/2023 1:44:52 PM-GMT+3 </td><td> 15 </td><td> 0.38 </td>
+</tr>
+<tr class="table-row">
+<td> 2 </td><td> Sekela Ad </td><td> 11/14/2023 8:41:13 AM-GMT+3 </td><td> 2 </td><td> 0.05 </td>
+</tr>
+<tr class="table-row">
+<td> 3 </td><td> Sekela Ad </td><td> 11/14/2023 10:12:05 AM-GMT+3 </td><td> 2 </td><td> 0.05 </td>
+</tr>
+<tr class="table-row">
+<td> 4 </td><td> Sekela Ad </td><td> 11/14/2023 10:14:09 AM-GMT+3 </td><td> 2 </td><td> 0.05 </td>
+</tr>
+<tr class="table-row">
+<td> 5 </td><td> Sekela Ad </td><td> 11/14/2023 11:41:27 AM-GMT+3 </td><td> 2 </td><td> 0.05 </td>
+</tr>
+
+          <!-- Add more rows as needed -->
+        </tbody>
+        <tfoot>
+          <!-- Total Row -->
+          <tr id="total-row">
+            <td colspan="4" style="text-align: right;">Total:</td>
+            <td> 0.58 Birr </td> <!-- You can replace this with the actual total amount -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+<br><br>
+<hr>
+    <div id="report-info" style="">
+      <p><strong>Channel:</strong> RIX TEST CHANNEL 3 </p>
+      <p><strong>Type:</strong> Standard </p>
+      <p><strong>Payment:</strong> CPM(Cost per mile): 16 Birr <br> </p>
+    </div>
+    <!-- Table Section -->
+    <div id="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Creative</th>
+            <th>Posted At</th>
+            <th>View</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add your table rows here -->
+          <!--
+          <tr class="table-row">
+            <td>1</td>
+            <td>AiQEM Ad NEW</td>
+            <td>Dec 14- 2023</td>
+            <td>1000</td>
+            <td>21.296 Birr</td>
+          </tr>
+          -->
+
+          <tr class="table-row">
+<td> 1 </td><td> Sekela Ad </td><td> 8/26/2023 1:44:52 PM-GMT+3 </td><td> 12 </td><td> 0.19 </td>
+</tr>
+<tr class="table-row">
+<td> 2 </td><td> Sekela Ad </td><td> 11/9/2023 5:10:38 PM-GMT+3 </td><td> 3 </td><td> 0.05 </td>
+</tr>
+<tr class="table-row">
+<td> 3 </td><td> Sekela Ad </td><td> 11/9/2023 5:10:50 PM-GMT+3 </td><td> 4 </td><td> 0.06 </td>
+</tr>
+
+          <!-- Add more rows as needed -->
+        </tbody>
+        <tfoot>
+          <!-- Total Row -->
+          <tr id="total-row">
+            <td colspan="4" style="text-align: right;">Total:</td>
+            <td> 0.30 Birr </td> <!-- You can replace this with the actual total amount -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+<br><br>
+<hr>
+    <div id="report-info" style="">
+      <p><strong>Channel:</strong> RIX TEST CHANNEL 2 </p>
+      <p><strong>Type:</strong> Premium </p>
+      <p><strong>Payment:</strong> CPM(Cost per mile): 25 Birr <br> </p>
+    </div>
+    <!-- Table Section -->
+    <div id="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Creative</th>
+            <th>Posted At</th>
+            <th>View</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add your table rows here -->
+          <!--
+          <tr class="table-row">
+            <td>1</td>
+            <td>AiQEM Ad NEW</td>
+            <td>Dec 14- 2023</td>
+            <td>1000</td>
+            <td>21.296 Birr</td>
+          </tr>
+          -->
+
+          <tr class="table-row">
+<td> 1 </td><td> For Demo </td><td> 10/23/2023 1:49:27 PM-GMT+3 </td><td> 6 </td><td> 0.15 </td>
+</tr>
+<tr class="table-row">
+<td> 2 </td><td> For Demo </td><td> 11/7/2023 11:04:43 AM-GMT+3 </td><td> 4 </td><td> 0.10 </td>
+</tr>
+<tr class="table-row">
+<td> 3 </td><td> Sekela Ad </td><td> 11/7/2023 11:06:24 AM-GMT+3 </td><td> 4 </td><td> 0.10 </td>
+</tr>
+<tr class="table-row">
+<td> 4 </td><td> Sekela Ad </td><td> 11/7/2023 11:07:03 AM-GMT+3 </td><td> 4 </td><td> 0.10 </td>
+</tr>
+<tr class="table-row">
+<td> 5 </td><td> For Demo </td><td> 11/7/2023 11:10:18 AM-GMT+3 </td><td> 4 </td><td> 0.10 </td>
+</tr>
+<tr class="table-row">
+<td> 6 </td><td> For Demo </td><td> 11/7/2023 11:30:23 AM-GMT+3 </td><td> 4 </td><td> 0.10 </td>
+</tr>
+<tr class="table-row">
+<td> 7 </td><td> Sekela Ad </td><td> 11/9/2023 5:10:21 PM-GMT+3 </td><td> 4 </td><td> 0.10 </td>
+</tr>
+<tr class="table-row">
+<td> 8 </td><td> For Demo </td><td> 11/9/2023 5:10:30 PM-GMT+3 </td><td> 4 </td><td> 0.10 </td>
+</tr>
+<tr class="table-row">
+<td> 9 </td><td> Buhe </td><td> 11/9/2023 6:04:34 PM-GMT+3 </td><td> 2 </td><td> 0.05 </td>
+</tr>
+<tr class="table-row">
+<td> 10 </td><td> For Demo </td><td> 11/11/2023 4:09:42 PM-GMT+3 </td><td> 2 </td><td> 0.05 </td>
+</tr>
+
+          <!-- Add more rows as needed -->
+        </tbody>
+        <tfoot>
+          <!-- Total Row -->
+          <tr id="total-row">
+            <td colspan="4" style="text-align: right;">Total:</td>
+            <td> 0.95 Birr </td> <!-- You can replace this with the actual total amount -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+<br><br>
+  </div>
+  <script>
+    function downloadPDF() {
+      var element = document.getElementById('table-container');
+      html2pdf(element);
+    }
+  </script>
+</body>
+
+</html>

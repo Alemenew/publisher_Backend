@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aiqem Report</title>
+  <style>
+    /* Your existing styles go here */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        /* For WebKit-based browsers like Chrome and Safari */
+        color-adjust: exact;
+        /* For Firefox */
+      }
+    }
+
+    body {
+      box-sizing: border-box;
+      margin: 0 !important;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    #header {
+      background-color: #183e61;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #logo {
+      margin-left: 10%;
+    }
+
+    #report-info {
+      margin-left: 20px;
+      margin-top: 20px;
+      color: #183e61;
+    }
+
+    #report-container {
+      margin: 20px;
+    }
+
+    #table-container {
+      margin-top: 30px;
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 12px;
+    }
+
+    th {
+      background-color: #FF5003;
+      color: white;
+    }
+
+    .table-row {
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .table-row:hover {
+      background-color: #f0f8ff;
+    }
+
+    #download-btn {
+      margin-top: 20px;
+    }
+
+    #download {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    #download:hover {
+      background-color: #45a049;
+    }
+
+    #total-row {
+      background-color: #f2f2f2;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: modalshow 0.3s;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+
+    @keyframes modalshow {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+
+    }
+
+    h2 {
+      text-align: center;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+</head>
+
+<body>
+  <div id="header">
+    <div id="logo">
+      <img
+        src='https://firebasestorage.googleapis.com/v0/b/aiqem-ad-store.appspot.com/o/files%2FAiqemTech.png?alt=media&token=b817d5ac-6237-49c4-8ce4-93f42f5b6ebf'
+        alt='aiqem logo' />
+    </div>
+  </div>
+  <h2>CAMPAIGN END REPORT</h2>
+  <hr>
+  <div id="report-info" style="position: absolute;">
+    <p><strong>Channel:</strong> CHANNEL_NAME </p>
+    <p><strong>Type:</strong> CHANNEL_TYPE </p>
+    <p><strong>Payment:</strong> CHANNEL_PAYMENT </p>
+  </div>
+  <div id="report-info" style="text-align:end; margin-right:50px ; margin-top:50px;">
+    <p style="margin: 0; "><strong>Campaign Name:-</strong> CAMPAIGN_NAME </p>
+    <p style="margin: 5px ;"><strong>Start Date:-</strong> CAMPAIGN_START_DATE </p>
+    <p style="margin: 5px ;"><strong>End Date:-</strong> CAMPAIGN_END_DATE </p>
+    <p style="margin: 5px ;"><strong>Duration:-</strong> DURATION </p>
+
+  </div>
+
+  <!-- Report Container -->
+  <div id="report-container">
+    <!-- Table Section -->
+    <div id="table-container">
+      CONTENT
+    </div>
+
+    <!-- Download Button -->
+    <!-- <div id="download-btn"> -->
+    <!--   <button id="download" onclick="downloadPDF()">Download as PDF</button> -->
+    <!-- </div> -->
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-content"></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function downloadPDF() {
+      var element = document.getElementById('table-container');
+      html2pdf(element);
+    }
+  </script>
+</body>
+
+</html>
