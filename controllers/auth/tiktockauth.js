@@ -19,11 +19,11 @@ export const getTikTokAccessToken = async (req, res) => {
     const decode = decodeURI(code);
     const tokenEndpoint = "https://open.tiktokapis.com/v2/oauth/token/";
     const params = {
-      client_key: "aw0h2vs3s39ad7dk",
-      client_secret: "Gd5cLdFaAsv0pzQgidmWWkkeQHxoyBZt",
+      client_key: process.env.CLIENT_KEY,
+      clientSecret: process.env.CLIENT_SECRET_TIKTOK,
+      redirect_uri_tikitok: process.env.REDIRECT_URI_TIKTOK,
       code: decode,
       grant_type: "authorization_code",
-      redirect_uri: "https://redirect-uri-tan.vercel.app/redirect",
     };
 
     const response = await axios.post(
