@@ -2,4 +2,5 @@ node_modules/
 .env
 error.log
 combined.log
-client_secret.json
+
+./config/client_secret.json
