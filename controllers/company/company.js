@@ -68,6 +68,7 @@ export const createCompany = asyncHandler(async (req, res) => {
 // @desc    Login Company
 // @route   POST /company/login
 // @access  Public
+
 export const loginCompany = asyncHandler(async (req, res) => {
   try {
     const data = req.body;
