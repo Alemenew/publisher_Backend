@@ -76,7 +76,7 @@ export const oauth2Callback_2 = async (req, res) => {
     // Save tokens in the database (optional) or session here if needed
 
     // Redirect the user to a specific route after successful authentication
-    return res.redirect('http://localhost:3000/youtube-callback'); // Change this to your desired route
+    return res.redirect('http://localhost:3000/platformAuth'); // Change this to your desired route
   } catch (err) {
     console.error('Error during OAuth token exchange:', err);
     res.status(500).send('Token exchange failed.');
