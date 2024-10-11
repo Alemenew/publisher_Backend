@@ -24,6 +24,7 @@ import corsMiddleware from './middleware/corsMiddleware.js'
 import cookieParser from 'cookie-parser';
 import { sessionMiddleware } from './config/sessionConfig.js'
 import { logResponseMiddleware } from './middleware/logResponseMiddleware.js'
+
 const app = express()
 dotenv.config()
 
