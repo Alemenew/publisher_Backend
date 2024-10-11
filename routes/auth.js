@@ -29,7 +29,7 @@ import {
   deleteUser,
   getUserType
 } from "../controllers/users.js";
-import { authorize, oauth2Callback } from "../controllers/auth/youtubeController.js";
+import { authorize, oauth2Callback, oauth2Callback_2 } from "../controllers/auth/youtubeController.js";
 import express from 'express';
 import {
   getAuthUser,
@@ -59,7 +59,7 @@ const router = express.Router();
 
 router.get('/authorize', authorize);
 router.get('/oauth2callback', oauth2Callback);
-
+router.get('/oauth2callback/:id', oauth2Callback_2);
 // OAuth-related routes for TikTok
 
 router.get("/oauth", getOAuthUrl);

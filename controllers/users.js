@@ -7,7 +7,8 @@ import IndividualBot from "../models/admin/individualBots.js"
 import Channel from "../models/channel.js"
 import ConversionBots from "../models/campaigns/conversionBots.js";
 import ConversionBot from "../models/campaigns/conversionBots.js";
-
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 // @desc    Get Users
 // @route   GET /users
 // @access  Private
@@ -106,6 +107,63 @@ export const createUser = asyncHandler(async (req, res) => {
     res.status(409).send(error.message)
   }
 })
+
+
+// Login function for existing users
+export const loginUser = asyncHandler(async (req, res) => {
+  try {
+    const { email, id, password } = req.body;
+
+    // Check if email, id or password are provided
+    if (!email && !id) {
+      return res.status(400).json({ message: "Email or ID is required" });
+    }
+    if (!password) {
+      return res.status(400).json({ message: "Password is required" });
+    }
+
+    // Find the user by either email or _id
+    const user = await Users.findOne({ $or: [{ email }, { _id: id }] });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the password is correct
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    // Create a JWT token with the user’s unique _id
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "5m" }
+    );
+
+    // Send the response with the token and user details
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      user: {
+        id: user._id,  // Unique identifier
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
+    });
+
+    // Log the successful login with user id and email
+    console.log(`User Login Successful: User ID - ${user._id}, Email - ${user.email}, Timestamp - ${new Date().toISOString()}`);
+
+  } catch (error) {
+    console.error("Login Error:", error.message);
+    res.status(500).send("Server error");
+  }
+});
+
+
+
 
 // @desc    Update User
 // @route   PATCH /users

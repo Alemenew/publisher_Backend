@@ -64,7 +64,7 @@ const userSchema = mongoose.Schema(
     email: String,
     password: {
       type: String,
-      required: function() {
+      required: function () {
         return this.role === "publisher";
       }, // Password required only for publishers
     },
@@ -117,7 +117,7 @@ const userSchema = mongoose.Schema(
       default: null, // Default to null initially
     },
     youtubeTokenExpiresIn: {
-      type: Date,
+      type: Number,
       default: null, // Default to null initially
     },
     tiktokAccessToken: {
@@ -138,7 +138,7 @@ const userSchema = mongoose.Schema(
   }
 );
 
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
 
   try {
