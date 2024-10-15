@@ -117,7 +117,7 @@ const userSchema = mongoose.Schema(
       default: null, // Default to null initially
     },
     youtubeTokenExpiresIn: {
-      type: Number,
+      type: Date,
       default: null, // Default to null initially
     },
     tiktokAccessToken: {

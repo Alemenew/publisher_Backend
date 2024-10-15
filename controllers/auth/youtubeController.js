@@ -35,7 +35,8 @@ export const oauth2Callback_2 = async (req, res) => {
   });
 
   const { code } = req.query;
-
+  console.log("OAuth Callback - Received Code:", code);
+  const { platform } = req.query
   const { id: id } = req.params
   console.log(id)
   console.log("OAuth Callback - Received Code:", code);
@@ -54,15 +55,17 @@ export const oauth2Callback_2 = async (req, res) => {
       console.error('Failed to receive tokens from Google OAuth');
       return res.status(500).json({ error: 'Failed to receive access/refresh tokens' });
     }
+    const expiryDate = new Date(new Date().getTime() + tokens.expiry_date * 1000);
 
     oauth2Client.setCredentials(tokens); // Set the tokens for future use
     const user = await Users.findOneAndUpdate(
       { _id: id },
       {
-        // platform: ['youtube'],
+        platform: ['youtube'],
         youtubeAccessToken: tokens.access_token,
         youtubeRefreshToken: tokens.refresh_token,
-        youtubeTokenExpiresIn: tokens.expiry_date,
+        youtubeTokenExpiresIn: expiryDate,  // Now storing as a Date object
+        // youtubeTokenExpiresIn: tokens.expiry_date,
         // verificationCode: verificationCode,
         // codeExpiration: expirationTime,
         // isVerified: false

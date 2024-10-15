@@ -20,7 +20,7 @@
 
 
 // export default router
-import { getOAuthUrl, getTikTokAccessToken } from "../controllers/auth/tiktockauth.js";
+import { getOAuthUrl, getTikTokAccessToken, handleTikTokOAuth } from "../controllers/auth/tiktockauth.js";
 import {
   checkemail,
   getUser,
@@ -64,6 +64,7 @@ router.get('/oauth2callback/:id', oauth2Callback_2);
 
 router.get("/oauth", getOAuthUrl);
 router.post("/tiktokaccesstoken", getTikTokAccessToken);
+router.post('/tiktokcallback2', handleTikTokOAuth)
 
 
 // User registration
