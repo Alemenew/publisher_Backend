@@ -53,6 +53,8 @@ import {
   verifyEmailCode,
 } from '../controllers/auth/emailVerification.js';
 
+import { trackTelegram } from "../controllers/auth/telegram.js";
+
 const router = express.Router();
 
 // OAuth-related routes for Google 
@@ -66,6 +68,8 @@ router.get("/oauth", getOAuthUrl);
 router.post("/tiktokaccesstoken", getTikTokAccessToken);
 router.post('/tiktokcallback2', handleTikTokOAuth)
 
+
+router.post('/trackTelegram', trackTelegram);
 
 // User registration
 router.post('/register', registerAuth);

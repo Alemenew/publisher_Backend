@@ -63,6 +63,7 @@ export const handleTikTokOAuth = async (req, res) => {
     const user = await Users.findOneAndUpdate(
       { _id: userId },  // find a document by userId
       {
+        $addToSet: { platforms: 'TikTok' },
         tiktokAccessToken: accessToken,
         tiktokRefreshToken: refreshToken,
         tiktokTokenExpiresIn: expiresIn

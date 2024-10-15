@@ -61,7 +61,7 @@ export const oauth2Callback_2 = async (req, res) => {
     const user = await Users.findOneAndUpdate(
       { _id: id },
       {
-        $addToSet: { platform: 'youtube' },
+        $addToSet: { platforms: 'youtube' },
         youtubeAccessToken: tokens.access_token,
         youtubeRefreshToken: tokens.refresh_token,
         youtubeTokenExpiresIn: expiryDate,  // Now storing as a Date object
