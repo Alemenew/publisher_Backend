@@ -12,6 +12,7 @@ import authRoutes from './routes/auth.js'
 import companyRoutes from './routes/company.js'
 import campaignRoutes from './routes/campaign.js'
 import PostCreativeRoutes from './routes/postCreatives.js'
+import PostVideoCreativeRoutes from './routes/postVideoCreative.js';
 import helloRoutes from './routes/hello.js'
 import engagementRoutes from './routes/engagement.js'
 import statRoutes from './routes/stat.js'
@@ -24,6 +25,12 @@ import corsMiddleware from './middleware/corsMiddleware.js'
 import cookieParser from 'cookie-parser';
 import { sessionMiddleware } from './config/sessionConfig.js'
 import { logResponseMiddleware } from './middleware/logResponseMiddleware.js'
+// Routes
+import tiktokCreativeRoutes from '../TikTok/tiktokCreativeRoutes.js';
+import youtubeCreativeRoutes from '../TikTok/youtubeCreativeRoutes.js';
+import videoRoutes from '../TikTok/videoRoutes.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express()
 dotenv.config()
@@ -31,6 +38,10 @@ dotenv.config()
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors())
+
+// Simulate __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }));
 
@@ -56,6 +67,14 @@ app.use(corsMiddleware);
 app.use('/auth', authRoutes);
 
 // Apply the middleware only to secured routes
+
+// Use routes
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// app.use('/video', videoRoutes);
+// app.use('/tiktok', tiktokCreativeRoutes);
+// app.use('/youtube', youtubeCreativeRoutes);
+
 app.use('/users', userRoutes);
 app.use('/channel', authMiddleware, channelRoutes);
 app.use('/admin', authMiddleware, adminRoutes);
@@ -63,6 +82,7 @@ app.use('/posted_ads', authMiddleware, postedAdsRoutes);
 app.use('/company', authMiddleware, companyRoutes);
 app.use('/campaign', authMiddleware, campaignRoutes);
 app.use('/post_creatives', authMiddleware, PostCreativeRoutes);
+app.use('/post_video_creatives', PostVideoCreativeRoutes);
 app.use('/stat', authMiddleware, statRoutes);
 app.use('/individual', authMiddleware, individualRoutes);
 app.use('/account', authMiddleware, accountRoutes);

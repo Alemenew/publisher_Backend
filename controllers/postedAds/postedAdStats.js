@@ -12,7 +12,7 @@ import mongoose from "mongoose"
 export const createPostedAdStat = asyncHandler(async (req, res) => {
   try{
     const data = req.body
-    const dataSet = new Set(Object.keys(data))
+    const dataSet = new Set(Object.keys(data)) 
     const schemaSet = new Set(Object.keys(requiredPostedAdStatsSchemaObject))
     let intersection = checkIntersection(schemaSet, dataSet)
     if ([...intersection].length === [...schemaSet].length) {
